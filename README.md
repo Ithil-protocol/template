@@ -1,4 +1,3 @@
 # Template
-Solidity template
 
-Use `npm` 
+Solidity template
