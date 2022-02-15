@@ -906,9 +906,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ithil-protocol/v1-contracts@workspace:.":
+"@ithil-protocol/template@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@ithil-protocol/v1-contracts@workspace:."
+  resolution: "@ithil-protocol/template@workspace:."
   dependencies:
     "@codechecks/client": ^0.1.12
     "@commitlint/cli": ^16.1.0
@@ -928,7 +928,7 @@ __metadata:
     "@types/chai": ^4.3.0
     "@types/fs-extra": ^9.0.13
     "@types/mocha": ^9.1.0
-    "@types/node": ^17.0.14
+    "@types/node": ^17.0.18
     "@typescript-eslint/eslint-plugin": ^5.10.2
     "@typescript-eslint/parser": ^5.10.2
     chai: ^4.3.6
@@ -1498,7 +1498,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=12, @types/node@npm:^17.0.14":
+"@types/node@npm:*, @types/node@npm:>=12":
   version: 17.0.17
   resolution: "@types/node@npm:17.0.17"
   checksum: 8ddba2829acdf1684fbd8fd248ec13f033efb70ecd1085677b547c40ef8e936a006b95eac3bdc28c47939c62526f3f027afeb4a930e30e4394923bbae4626476
@@ -1516,6 +1516,13 @@ __metadata:
   version: 12.20.45
   resolution: "@types/node@npm:12.20.45"
   checksum: 9d52f90935af63921b2634b1b0fa4ccea53d9b9054e8becb44ff63d0aa2b1f8f9e21da1452862a4db3854e4535ea31c80f010089f785862b52bc39e85e896815
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^17.0.18":
+  version: 17.0.18
+  resolution: "@types/node@npm:17.0.18"
+  checksum: 6c4edfc2b3ba2342a9c3d56e934c5245948ab752f4dc04bd6790b9603e6ebc53bc4f5befc3662e207f7dba2ddd17ccf657f915e319ea7cdd4f77b851079d1611
   languageName: node
   linkType: hard
 

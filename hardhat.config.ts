@@ -116,15 +116,7 @@ const config: HardhatUserConfig = {
   },
   dodoc: {
     runOnCompile: process.env.GENERATE_DOCS ? true : false,
-    include: [
-      "IVault",
-      "BaseStrategy",
-      "IMarginTradingStrategy",
-      "IWrappedToken",
-      "VaultMath",
-      "TraderMath",
-      "TransferHelper",
-    ],
+    include: ["Greeter"],
   },
 };
 
