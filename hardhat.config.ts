@@ -1,8 +1,8 @@
 import "@nomiclabs/hardhat-waffle";
 import "@nomiclabs/hardhat-etherscan";
-import "@primitivefi/hardhat-dodoc";
 import "@tenderly/hardhat-tenderly";
 import "@typechain/hardhat";
+import "hardhat-abi-exporter";
 import "hardhat-gas-reporter";
 import "hardhat-spdx-license-identifier";
 import "solidity-coverage";
@@ -10,6 +10,7 @@ import "solidity-coverage";
 import "./tasks/accounts";
 import "./tasks/deploy";
 
+import { chainIds } from "./constants";
 import { resolve } from "path";
 
 import { config as dotenvConfig } from "dotenv";
@@ -18,19 +19,10 @@ import { NetworkUserConfig } from "hardhat/types";
 
 dotenvConfig({ path: resolve(__dirname, "./.env") });
 
-const chainIds = {
-  goerli: 5,
-  hardhat: 31337,
-  kovan: 42,
-  mainnet: 1,
-  rinkeby: 4,
-  ropsten: 3,
-};
-
 // Ensure that we have all the environment variables we need.
-const mnemonic: string | undefined = process.env.MNEMONIC;
-if (!mnemonic) {
-  throw new Error("Please set your MNEMONIC in a .env file");
+const privateKey: string | undefined = process.env.PRIVATE_KEY;
+if (!privateKey) {
+  throw new Error("Please set your PRIVATE_KEY in a .env file");
 }
 
 const infuraApiKey: string | undefined = process.env.INFURA_API_KEY;
@@ -41,17 +33,20 @@ if (!infuraApiKey) {
 function getChainConfig(network: keyof typeof chainIds): NetworkUserConfig {
   const url: string = "https://" + network + ".infura.io/v3/" + infuraApiKey;
   return {
-    accounts: {
-      count: 10,
-      mnemonic,
-      path: "m/44'/60'/0'/0",
-    },
+    accounts: [`${privateKey}`],
     chainId: chainIds[network],
     url,
   };
 }
 
 const config: HardhatUserConfig = {
+  abiExporter: {
+    path: "./abi",
+    clear: false,
+    flat: true,
+    // only: [],
+    // except: []
+  },
   defaultNetwork: "hardhat",
   gasReporter: {
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
@@ -65,9 +60,6 @@ const config: HardhatUserConfig = {
   },
   networks: {
     hardhat: {
-      accounts: {
-        mnemonic,
-      },
       chainId: chainIds.hardhat,
       forking: {
         enabled: process.env.FORKING ? true : false,
@@ -87,7 +79,7 @@ const config: HardhatUserConfig = {
     tests: "./test",
   },
   solidity: {
-    version: "0.8.9",
+    version: "0.8.6",
     settings: {
       metadata: {
         // Not including the metadata hash
@@ -113,10 +105,6 @@ const config: HardhatUserConfig = {
   tenderly: {
     project: process.env.TENDERLY_PROJECT || "",
     username: process.env.TENDERLY_USERNAME || "",
-  },
-  dodoc: {
-    runOnCompile: process.env.GENERATE_DOCS ? true : false,
-    include: ["Greeter"],
   },
 };
 

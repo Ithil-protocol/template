@@ -16,9 +16,8 @@ describe("Unit tests", function () {
 
   describe("Greeter", function () {
     beforeEach(async function () {
-      const greeting: string = "Hello, world!";
       const greeterArtifact: Artifact = await artifacts.readArtifact("Greeter");
-      this.greeter = <Greeter>await waffle.deployContract(this.signers.admin, greeterArtifact, [greeting]);
+      this.greeter = <Greeter>await waffle.deployContract(this.signers.admin, greeterArtifact, []);
     });
 
     shouldBehaveLikeGreeter();
